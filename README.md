@@ -4,6 +4,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+- npm i react-router-dom
+- npm i react-awesome-reveal
+- npm install yup --save
+- npm install formik --save
+- npm install @mui/material @emotion/react @emotion/styled
+- npm install firebase
+- npm i react-toastify
+
 In the project directory, you can run:
 
 ### `yarn start`
@@ -68,3 +76,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# m-city
