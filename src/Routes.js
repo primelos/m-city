@@ -5,13 +5,20 @@ import Home from "./components/Home";
 import Signin from "./components/Signin";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Dashboard from "./components/Admin/Dashboard";
+import AuthGuard from "./Hoc/Auth";
 
 function Routes({ user }) {
   return (
     <Router className="App">
       <Header user={user} />
       <Switch>
-        <Route path="/sign_in" exact component={Signin} />
+        <Route path="/dashboard" exact component={AuthGuard(Dashboard)} />
+        <Route
+          path="/sign_in"
+          exact
+          component={(props) => <Signin {...props} user={user} />}
+        />
         <Route path="/" exact component={Home} />
       </Switch>
       <ToastContainer />

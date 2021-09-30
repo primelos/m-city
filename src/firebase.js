@@ -1,5 +1,8 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
+// import { cityDb } from "../public/images/temp/m-city-exports";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -13,5 +16,29 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+const DB = firebase.firestore();
+const matchesCollection = DB.collection("matches");
+const playersCollection = DB.collection("players");
+const positionsCollection = DB.collection("position");
+const promotionsCollection = DB.collection("promotions");
+const teamsCollection = DB.collection("teams");
 
-export { firebase };
+// cityDb.matches.forEach((item) => {
+//   matchesCollection.add(item);
+// });
+
+// cityDb.players.forEach((item) => {
+//   playersCollection.add(item);
+// });
+
+// cityDb.teams.forEach((item) => {
+//   teamsCollection.add(item);
+// });
+export {
+  firebase,
+  matchesCollection,
+  playersCollection,
+  positionsCollection,
+  promotionsCollection,
+  teamsCollection,
+};

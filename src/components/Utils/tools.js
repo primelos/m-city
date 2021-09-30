@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Children } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { firebase } from "../../firebase";
 import mcityLogo from "../../Resources/images/logos/manchester_city_logo.png";
 
 export const CityLogo = ({ height, width, link, linkTo }) => {
@@ -36,4 +36,40 @@ export const showSuccessToast = (msg) => {
   toast.success(msg, {
     position: toast.POSITION.TOP_RIGHT,
   });
+};
+
+export const logOutHandler = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      showSuccessToast("Good Bye");
+    })
+    .catch((error) => {
+      showErrorToast(error.message);
+    });
+};
+
+export const Tag = (props) => {
+  const { children, link, linkTo, bck, size, color, add } = props;
+  const template = (
+    <div
+      style={{
+        background: bck ? bck : "#ffffff",
+        fontSize: size ? size : "15px",
+        color: color ? color : "000000",
+        padding: "5px 10px",
+        display: "inline-block",
+        fontFamily: "Righteous",
+        ...add,
+      }}
+    >
+      {children}
+    </div>
+  );
+  if (link) {
+    return <Link to={linkTo}>{template}</Link>;
+  } else {
+    return template;
+  }
 };
