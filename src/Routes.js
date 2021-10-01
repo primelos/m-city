@@ -7,12 +7,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "./components/Admin/Dashboard";
 import AuthGuard from "./Hoc/Auth";
+import AdminPlayers from "./components/Admin/players";
 
 function Routes({ user }) {
   return (
     <Router className="App">
       <Header user={user} />
       <Switch>
+        <Route
+          path="/admin_players"
+          exact
+          component={AuthGuard(AdminPlayers)}
+        />
+
         <Route path="/dashboard" exact component={AuthGuard(Dashboard)} />
         <Route
           path="/sign_in"

@@ -30,7 +30,7 @@ let cards = [
     id: 4,
     bottom: 0,
     left: 0,
-    player: Vincent_Kompany,
+    player: Otamendi,
   },
 ];
 
