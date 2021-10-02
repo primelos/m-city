@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../../../Hoc/AdminLayout";
 import { firebase, playersCollection } from "../../../firebase";
-import { Button } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Paper,
+  CircularProgress,
+  Button,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 
 const AdminPlayers = () => {
   const [lastVisible, setLastVisible] = useState(null);
@@ -62,6 +72,49 @@ const AdminPlayers = () => {
   console.log("players", players);
   return (
     <AdminLayout title="The players">
+      <div className="mb-5">
+        <Button
+          disableElevation
+          variant="outlined"
+          to={"/admin_players/add_player"}
+          component={Link}
+        >
+          Add player
+        </Button>
+      </div>
+      <Paper className="mb-5">
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>First name</TableCell>
+              <TableCell>Last name</TableCell>
+              <TableCell>Number</TableCell>
+              <TableCell>Position</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {players
+              ? players.map((player) => (
+                  <TableRow key={player.id}>
+                    <TableCell>
+                      <Link to={`/admin_players/edit_player/${player.id}`}>
+                        {player.name}
+                      </Link>
+                    </TableCell>
+                    <TableCell>
+                      <Link to={`/admin_players/edit_player/${player.id}`}>
+                        {player.lastname}
+                      </Link>
+                    </TableCell>
+                    <TableCell>{player.number}</TableCell>
+                    <TableCell>{player.position}</TableCell>
+                  </TableRow>
+                ))
+              : null}
+          </TableBody>
+        </Table>
+      </Paper>
+
       <Button onClick={() => loadMorePlayers()}>Load more</Button>
     </AdminLayout>
   );
