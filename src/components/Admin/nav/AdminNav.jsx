@@ -4,7 +4,6 @@ import ListItem from "@mui/material/ListItem";
 import { logOutHandler } from "../../Utils/tools";
 
 const AdminNav = (props) => {
-  console.log(props);
   const links = [
     {
       title: "Matches",
