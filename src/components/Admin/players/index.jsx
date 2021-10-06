@@ -12,7 +12,7 @@ import {
   Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-
+import { showErrorToast } from "../../Utils/tools";
 const AdminPlayers = () => {
   const [lastVisible, setLastVisible] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -34,7 +34,7 @@ const AdminPlayers = () => {
           setPlayers(players);
         })
         .catch((error) => {
-          console.log(error);
+          showErrorToast(error);
         })
         .finally(() => {
           setLoading(false);
@@ -60,16 +60,16 @@ const AdminPlayers = () => {
           setPlayers([...players, ...newPlayers]);
         })
         .catch((error) => {
-          console.log(error);
+          showErrorToast(error);
         })
         .finally(() => {
           setLoading(false);
         });
     } else {
-      console.log("nothing to load");
+      showErrorToast("nothing to load");
     }
   };
-  console.log("players", players);
+
   return (
     <AdminLayout title="The players">
       <div className="mb-5">
@@ -115,7 +115,19 @@ const AdminPlayers = () => {
         </Table>
       </Paper>
 
-      <Button onClick={() => loadMorePlayers()}>Load more</Button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => loadMorePlayers()}
+        disabled={loading}
+      >
+        Load more
+      </Button>
+      <div className="admin_progress">
+        {loading ? (
+          <CircularProgress thickness={7} style={{ color: "#98c5e9" }} />
+        ) : null}
+      </div>
     </AdminLayout>
   );
 };

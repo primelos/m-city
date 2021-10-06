@@ -18,6 +18,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - npm i react-toastify
 - npm install react-move
 - npm i d3-ease
+- npm i react-firebase-file-uploader // (worked) npm i react-firebase-file-uploader --legacy-peer-deps
+
   In the project directory, you can run:
 
 ### `yarn start`

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { firebase } from "../../firebase";
 import mcityLogo from "../../Resources/images/logos/manchester_city_logo.png";
+import { FormHelperText } from "@mui/material";
 
 export const CityLogo = ({ height, width, link, linkTo }) => {
   const template = (
@@ -72,4 +73,24 @@ export const Tag = (props) => {
   } else {
     return template;
   }
+};
+
+export const textErrorHelper = (formik, values) => ({
+  error: formik.errors[values] && formik.touched[values],
+  helperText:
+    formik.errors[values] && formik.touched[values]
+      ? formik.errors[values]
+      : null,
+});
+
+export const selectErrorHelper = (formik, values) => {
+  if (formik.errors[values] && formik.touched[values]) {
+    return <FormHelperText>{formik.errors[values]}</FormHelperText>;
+  }
+
+  return false;
+};
+
+export const selectIsError = (formik, values) => {
+  return formik.errors[values] && formik.touched[values];
 };

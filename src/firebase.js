@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-
+import "firebase/compat/storage";
 // import { cityDb } from "../public/images/temp/m-city-exports";
 
 const firebaseConfig = {
