@@ -133,6 +133,7 @@ button {
   color: #ffffff;
   border: 1px solid white;
   padding: 10px;
+  cursor: pointer;
 }
 
 .not_found_container {
