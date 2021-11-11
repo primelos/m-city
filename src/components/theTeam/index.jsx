@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PlayerCard from "../Utils/playerCard";
 import { Slide } from "react-awesome-reveal";
-import { firebase, playerCollection, playersCollection } from "../../firebase";
-import { showErrorToast } from "../Utils/tools";
 import { Promise } from "core-js";
+
+import { showErrorToast } from "../Utils/tools";
+import { firebase, playersCollection } from "../../firebase";
 
 const TheTeam = () => {
   const [loading, setLoading] = useState(true);
@@ -14,22 +15,21 @@ const TheTeam = () => {
       playersCollection
         .get()
         .then((snapshot) => {
-          const player = snapshot.docs.map((doc) => ({
+          const players = snapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
           }));
           let promises = [];
+
           players.forEach((player, index) => {
             promises.push(
               new Promise((resolve, reject) => {
-                console.log("fire", firebase.storage().ref("players"));
                 firebase
                   .storage()
                   .ref("players")
                   .child(player.image)
                   .getDownloadURL()
                   .then((url) => {
-                    console.log("url", url);
                     players[index].url = url;
                     resolve();
                   })
@@ -39,9 +39,11 @@ const TheTeam = () => {
               })
             );
           });
+
           Promise.all(promises).then(() => {
             setPlayers(players);
           });
+          ////
         })
         .catch((error) => {
           showErrorToast("Sorry try again later");
@@ -53,7 +55,8 @@ const TheTeam = () => {
   }, [players]);
 
   console.log(players);
-  return <div>team</div>;
+
+  return <div>the team</div>;
 };
 
 export default TheTeam;
