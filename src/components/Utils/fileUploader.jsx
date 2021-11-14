@@ -33,8 +33,8 @@ class Fileuploader extends Component {
       .getDownloadURL()
       .then((url) => {
         this.setState({ fileURL: url });
-      })
-      .catch((error) => {});
+      });
+    // .catch((error) => {});
     this.props.filename(filename);
   };
 
