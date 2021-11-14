@@ -102,6 +102,10 @@ const AddEditPlayers = (props) => {
               .then((url) => {
                 updateImageName(snapshot.data().image);
                 setDefaultImg(url);
+              })
+              .catch((err) => {
+                console.log("ERROR", err);
+                showErrorToast(err);
               });
 
             setFormType("edit");

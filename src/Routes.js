@@ -34,12 +34,12 @@ function Routes({ user }) {
         />
 
         <Route path="/dashboard" component={AuthGuard(Dashboard)} />
+        <Route path="/the_team" component={TheTeam} />
         <Route
           path="/sign_in"
           exact
           component={(props) => <Signin {...props} user={user} />}
         />
-        <Route path="/the_team" component={TheTeam} />
         <Route path="/" exact component={Home} />
       </Switch>
       <ToastContainer />
