@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { firebase } from "../../firebase";
 import { CircularProgress } from "@mui/material";
-import { Redirect, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { firebase } from "../../firebase";
+import { Redirect, useHistory } from "react-router-dom";
 import { showErrorToast, showSuccessToast } from "../Utils/tools";
-import { Link } from "react-router-dom";
 
-const Signin = (props) => {
-  const { user } = props;
+const NewUser = ({ user }) => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 
@@ -17,11 +16,14 @@ const Signin = (props) => {
       email: "",
       password: "",
     },
-    validationSchema: Yup.object({
+    validationSchema: Yup.object().shape({
       email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
       password: Yup.string().required("password is required").min(8),
+      confirmPassword: Yup.string()
+        .required("Please confirm your password")
+        .oneOf([Yup.ref("password")], "Passwords do not match"),
     }),
     onSubmit: (values) => {
       setLoading(true);
@@ -30,18 +32,16 @@ const Signin = (props) => {
   });
 
   const submitForm = (values) => {
-    // const { email, password } = values;
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(values.email, values.password)
-      .then(() => {
-        showSuccessToast("Welcome back");
-        history.push("/dashboard");
-      })
-      .catch((error) => {
-        setLoading(false);
-        showErrorToast(error.message);
-      });
+    try {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(values.email, values.password);
+      showSuccessToast("Welcome to M-City");
+      history.push("/dashboard");
+    } catch (error) {
+      setLoading(false);
+      showErrorToast(error.message);
+    }
   };
 
   return (
@@ -50,7 +50,7 @@ const Signin = (props) => {
         <div className="container">
           <div className="signin_wrapper" style={{ margin: "100px" }}>
             <form onSubmit={formik.handleSubmit}>
-              <h2>Please login</h2>
+              <h2>New User</h2>
               <input
                 type="text"
                 name="email"
@@ -73,13 +73,28 @@ const Signin = (props) => {
               {formik.touched.password && formik.errors.password ? (
                 <div className="error_label">{formik.errors.password}</div>
               ) : null}
+
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm password"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.confirmPassword}
+              />
+              {formik.touched.confirmPassword &&
+              formik.errors.confirmPassword ? (
+                <div className="error_label">
+                  {formik.errors.confirmPassword}
+                </div>
+              ) : null}
+
               {loading ? (
                 <CircularProgress color="secondary" className="progress" />
               ) : (
-                <button type="submit">Login</button>
+                <button type="submit">Sign up</button>
               )}
             </form>
-            <Link to="/new_user">New user? signup here</Link>
           </div>
         </div>
       ) : (
@@ -89,4 +104,4 @@ const Signin = (props) => {
   );
 };
 
-export default Signin;
+export default NewUser;

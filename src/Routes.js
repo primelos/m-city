@@ -15,6 +15,8 @@ import AdminPlayers from "./components/Admin/players";
 import AddEditPlayers from "./components/Admin/players/addEditPlayers";
 import AdminMatches from "./components/Admin/matches";
 import AddEditMatch from "./components/Admin/matches/addEditMatch";
+import NotFound from "./components/not_found";
+import NewUser from "./components/NewUser";
 
 function Routes({ user }) {
   return (
@@ -23,46 +25,39 @@ function Routes({ user }) {
       <Switch>
         <Route
           path="/admin_matches/edit_match/:matchid"
-          exact
           component={AuthGuard(AddEditMatch)}
         />
         <Route
           path="/admin_matches/add_match"
-          exact
           component={AuthGuard(AddEditMatch)}
         />
-        <Route
-          path="/admin_matches"
-          exact
-          component={AuthGuard(AdminMatches)}
-        />
+        <Route path="/admin_matches" component={AuthGuard(AdminMatches)} />
 
         <Route
           path="/admin_players/edit_player/:playerid"
-          exact
           component={AuthGuard(AddEditPlayers)}
         />
         <Route
           path="/admin_players/add_player"
-          exact
           component={AuthGuard(AddEditPlayers)}
         />
-        <Route
-          path="/admin_players"
-          exact
-          component={AuthGuard(AdminPlayers)}
-        />
+        <Route path="/admin_players" component={AuthGuard(AdminPlayers)} />
 
         <Route path="/dashboard" component={AuthGuard(Dashboard)} />
         <Route path="/the_matches" component={TheMatches} />
 
         <Route path="/the_team" component={TheTeam} />
         <Route
+          path="/new_user"
+          component={(props) => <NewUser {...props} />}
+          user={user}
+        />
+        <Route
           path="/sign_in"
-          exact
           component={(props) => <Signin {...props} user={user} />}
         />
         <Route path="/" exact component={Home} />
+        <Route component={NotFound} />
       </Switch>
       <ToastContainer />
       <Footer />

@@ -113,7 +113,6 @@ const AddEditMatch = (props) => {
   }, [props.match.params.matchid]);
 
   const submitForm = (values) => {
-    console.log(values);
     let dataToSubmit = values;
     teams.forEach((team) => {
       if (team.shortName === dataToSubmit.local) {

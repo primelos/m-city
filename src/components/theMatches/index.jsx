@@ -59,7 +59,6 @@ const TheMatches = () => {
     });
   };
 
-  console.log(state.filterMatches);
   return (
     <>
       {matches ? (
