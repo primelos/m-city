@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { easePolyOut } from "d3-ease";
 import { Animate } from "react-move";
 import FeaturedPlayer from "../../../Resources/images/featured_player.png";

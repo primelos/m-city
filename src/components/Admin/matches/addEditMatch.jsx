@@ -69,7 +69,7 @@ const AddEditMatch = (props) => {
   const showTeams = () =>
     teams
       ? teams.map((team) => (
-          <MenuItem key={team.id} value="" value={team.shortName}>
+          <MenuItem key={team.id} value={team.shortName}>
             {team.shortName}
           </MenuItem>
         ))

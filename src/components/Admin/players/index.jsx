@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AdminLayout from "../../../Hoc/AdminLayout";
-import { firebase, playersCollection } from "../../../firebase";
+import { playersCollection } from "../../../firebase";
 import {
   Table,
   TableBody,
