@@ -4,6 +4,9 @@ Using
 
 - Authorized Routes
 - useState
+- useEffect
+- useCallBack
+- useReducer
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -18,9 +21,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - npm i react-toastify
 - npm install react-move
 - npm i d3-ease
-- npm i react-firebase-file-uploader // (worked) npm i react-firebase-file-uploader --legacy-peer-deps
-
+- npm i react-firebase-file-uploader // (worked) -> npm i react-firebase-file-uploader --legacy-peer-deps
+- npm i -g firebase-tools
   In the project directory, you can run:
+
+## Firebase to login again if error for exsiting projects
+
+- firebase login --reauth
 
 ### `yarn start`
 
