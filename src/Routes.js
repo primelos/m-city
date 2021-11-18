@@ -9,7 +9,6 @@ import Home from "./components/Home";
 import Signin from "./components/Signin";
 import TheTeam from "./components/theTeam";
 import TheMatches from "./components/theMatches";
-
 import Dashboard from "./components/Admin/Dashboard";
 import AdminPlayers from "./components/Admin/players";
 import AddEditPlayers from "./components/Admin/players/addEditPlayers";
