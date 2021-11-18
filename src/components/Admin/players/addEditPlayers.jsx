@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import AdminLayout from "../../../Hoc/AdminLayout";
 import Fileuploader from "../../Utils/fileUploader";
 import { useFormik } from "formik";
@@ -82,9 +82,12 @@ const AddEditPlayers = (props) => {
     }
   };
 
-  const updateImageName = (file) => {
-    formik.setFieldValue("image", file);
-  };
+  const updateImageName = useCallback(
+    (file) => {
+      formik.setFieldValue("image", file);
+    },
+    [formik]
+  );
 
   useEffect(() => {
     const param = props.match.params.playerid;
@@ -121,7 +124,7 @@ const AddEditPlayers = (props) => {
       setFormType("add");
       setValues(defaultVaules);
     }
-  }, [props.match.params.id]);
+  }, [props.match.params.playerid, updateImageName]);
 
   const resetImage = () => {
     formik.setFieldValue("image", "");
