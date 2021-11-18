@@ -37,7 +37,11 @@ const Header = ({ user }) => {
               Logout
             </Button>
           </>
-        ) : null}
+        ) : (
+          <Link to="/sign_in">
+            <Button color="inherit">Sign in</Button>
+          </Link>
+        )}
       </Toolbar>
     </AppBar>
   );
